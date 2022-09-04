@@ -28,7 +28,7 @@ npm run test
 ### Add a localization
 in main.ts : choose a tag for the new localization ex: fr_FR, then add this line :
 ```
-  fr_FR: createCustomMessageObject("fr_FR"),
+  fr_FR: localizationMessagesObject.fr_FR,
 ```
 Add your chosen tag into src/config/mapping.json --> in game.localization
 You then need to go to src/localizations/
@@ -44,7 +44,7 @@ Translate all json files in your folder. File look like this :
   }
 }
 ```
-You should never change the left size, only the right size. In the above example,do NOT change PageNotFound, title and goBackMainMenu.
+You should never have to change the left size, only the right size. In the above example,do NOT change PageNotFound, title and goBackMainMenu.
 
 ### Add a theme
 Choose a tag.
