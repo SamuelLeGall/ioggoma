@@ -1,0 +1,28 @@
+{
+  "game": {
+    "localization": [
+      {
+        "key": "fr_FR",
+        "value": "Français",
+        "imgExt": "svg"
+      },
+      {
+        "key": "en_US",
+        "value": "English",
+        "imgExt": "svg"
+      }
+    ],
+    "theme": [
+      {
+        "key": "primary",
+        "value": "primary",
+        "imgExt": "svg"
+      },
+      {
+        "key": "dark",
+        "value": "dark",
+        "imgExt": "svg"
+      }
+    ]
+  }
+}

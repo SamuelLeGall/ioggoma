@@ -1,0 +1,1 @@
+to add alias for new folders, edit tsconfig.json and vite.config.ts and vitest.config.ts
