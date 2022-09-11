@@ -3,25 +3,21 @@
     "localization": [
       {
         "key": "fr_FR",
-        "value": "Français",
-        "imgExt": "svg"
+        "value": "Français"
       },
       {
         "key": "en_US",
-        "value": "English",
-        "imgExt": "svg"
+        "value": "English"
       }
     ],
     "theme": [
       {
         "key": "primary",
-        "value": "primary",
-        "imgExt": "svg"
+        "value": "primary"
       },
       {
         "key": "dark",
-        "value": "dark",
-        "imgExt": "svg"
+        "value": "dark"
       }
     ]
   }
