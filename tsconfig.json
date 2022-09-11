@@ -13,11 +13,17 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@composables/*": [
+        "src/composables/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
       "@config/*": [
         "src/config/*"
+      ],
+      "@directives/*": [
+        "src/directives/*"
       ],
       "@localizations/*": [
         "src/localizations/*"
@@ -30,6 +36,9 @@
       ],
       "@styles/*": [
         "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ],
     },
     "strict": true,

@@ -1,26 +1,31 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue';
-
-export const useGameStore = defineStore('game', () => {
-  const currentLocalization = ref({
+import { defineStore } from "pinia";
+import { Ref, ref } from "vue";
+interface Option {
+  key: string;
+  value: string;
+}
+export const useGameStore = defineStore("game", () => {
+  const currentLocalization: Ref<Option> = ref({
     key: "fr_FR",
     value: "Français",
-    imgExt: "svg",
   });
-  const currentDataTheme = ref({
+  const currentDataTheme: Ref<Option> = ref({
     key: "primary",
     value: "primary",
-    imgExt: "svg",
   });
 
-  function setCurrentLocalization(newLocalization: any) {
+  function setCurrentLocalization(newLocalization: Option) {
     currentLocalization.value = newLocalization;
-  };
+  }
 
-  function setCurrentDataTheme(newDataTheme: any) {
+  function setCurrentDataTheme(newDataTheme: Option) {
     currentDataTheme.value = newDataTheme;
+  }
+
+  return {
+    currentLocalization,
+    currentDataTheme,
+    setCurrentLocalization,
+    setCurrentDataTheme,
   };
-
-
-  return { currentLocalization, currentDataTheme, setCurrentLocalization, setCurrentDataTheme }
-})
+});
