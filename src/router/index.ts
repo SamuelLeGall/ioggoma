@@ -1,8 +1,4 @@
-import {
-  createRouter,
-  createWebHashHistory,
-  RouteRecordRaw,
-} from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,11 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@components/HelloWorld.vue"),
   },
   //catch 404
-  // {
-  //   path: "/:catchAll(.*)",
-  //   name: "NOTFOUND",
-  //   component: () => import("@components/UIElements/Error/PageNotFound.vue"),
-  // },
+  {
+    path: "/:catchAll(.*)",
+    name: "NOTFOUND",
+    component: () => import("@components/UIElements/Error/PageNotFound.vue"),
+  },
 ];
 
 const router = createRouter({
