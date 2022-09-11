@@ -61,3 +61,8 @@ You then need to go to src/styles/variables/data-themes.scss and add :
 
 You have to edit 3 files, all situated at the root of the project. One is used for the unit tests, one for vite/vue and the last only for typescript.
 vitest.config.ts, vite.config.ts, tsconfig.json
+
+
+### Link trello
+
+https://trello.com/b/OQHjD7CB/ioggomar-planning
