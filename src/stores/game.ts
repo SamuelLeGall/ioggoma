@@ -22,10 +22,24 @@ export const useGameStore = defineStore("game", () => {
     currentDataTheme.value = newDataTheme;
   }
 
+  function getGameStoreState() {
+    return {
+      currentLocalization: currentLocalization.value,
+      currentDataTheme: currentDataTheme.value,
+    };
+  }
+  function setGameStoreState(data: any) {
+    if (data) {
+      setCurrentLocalization(data.currentLocalization);
+      setCurrentDataTheme(data.currentDataTheme);
+    }
+  }
   return {
     currentLocalization,
     currentDataTheme,
     setCurrentLocalization,
     setCurrentDataTheme,
+    getGameStoreState,
+    setGameStoreState,
   };
 });

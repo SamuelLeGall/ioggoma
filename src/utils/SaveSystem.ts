@@ -1,42 +1,32 @@
-// const fs = require("fs");
-// const { dialog } = require("electron").remote;
-// const remoteApp = require("electron").remote.app;
-// import store from "@/store";
-// const dir = remoteApp.getPath("documents") + "/ioggomar";
+import { useGameStore } from "@stores/game";
+import { usePlayerStore } from "@stores/player";
+import { useQuestsStore } from "@stores/quests";
 
-// const options = {
-//   title: "Save file",
-//   defaultPath: `${dir}/saves/currentSave.json`,
-//   filters: [{ name: "json", extensions: ["json"] }],
-// };
+const gameStore = useGameStore();
+const playerStore = usePlayerStore();
+const questsStore = useQuestsStore();
+const { getGameStoreState, setGameStoreState } = gameStore;
+const { getPlayerStoreState, setPlayerStoreState } = playerStore;
+const { getQuestsStoreState, setQuestsStoreState } = questsStore;
 
-export const save = function (): void {
-  // if (!fs.existsSync(dir)) {
-  //   fs.mkdirSync(dir);
-  //   fs.mkdirSync(`${dir}/saves`);
-  // }
-  // dialog.showSaveDialog(options).then((result) => {
-  //   if (!result.canceled) {
-  //     const data = store.state;
-  //     fs.writeFileSync(result.filePath, JSON.stringify(data), "utf-8");
-  //   }
-  // });
+// METHODS
+export const save = async () => {
+  const saveData = {
+    GameStore: getGameStoreState(),
+    PlayerStore: getPlayerStoreState(),
+    QuestsStore: getQuestsStoreState(),
+  };
+  const isSaved = await window.electronAPI.saveGame(JSON.stringify(saveData));
+  if (isSaved) {
+    console.log("saved");
+  }
 };
-
-export const load = function (): void {
-  // if (!fs.existsSync(dir)) {
-  //   fs.mkdirSync(dir);
-  //   fs.mkdirSync(`${dir}/saves`);
-  // }
-  // dialog.showOpenDialog(options).then((result) => {
-  //   if (!result.canceled) {
-  //     fs.readFile(result.filePaths[0], "utf-8", (err: any, data: any) => {
-  //       if (err) {
-  //         console.error(`[readFileSync] Error : ${err}`);
-  //         return;
-  //       }
-  //       store.replaceState(JSON.parse(data));
-  //     });
-  //   }
-  // });
+export const load = async () => {
+  const gameData = await window.electronAPI.loadGame();
+  if (gameData) {
+    setGameStoreState(gameData.GameStore);
+    setPlayerStoreState(gameData.PlayerStore);
+    setQuestsStoreState(gameData.QuestsStore);
+    console.log("loaded");
+  }
 };

@@ -76,6 +76,20 @@ export const useQuestsStore = defineStore("quests", () => {
     }
   }
 
+  function getQuestsStoreState() {
+    return {
+      onGoingQuests: onGoingQuests.value,
+      completedQuests: completedQuests.value,
+      listQuests: listQuests.value,
+    };
+  }
+  function setQuestsStoreState(data: any) {
+    if (data) {
+      onGoingQuests.value = data.onGoingQuests;
+      completedQuests.value = data.completedQuests;
+      listQuests.value = data.listQuests;
+    }
+  }
   return {
     listQuests,
     onGoingQuests,
@@ -83,5 +97,7 @@ export const useQuestsStore = defineStore("quests", () => {
     saveQuestAsOnGoing,
     saveQuestAsCompleted,
     getQuestById,
+    getQuestsStoreState,
+    setQuestsStoreState,
   };
 });
