@@ -1,0 +1,25 @@
+.display-flex {
+    display: flex;
+}
+
+
+// flex direction
+.flex-direction-column {
+    flex-direction: column;
+}
+
+//justify centent
+.justify-centent-center {
+    justify-content: center;
+}
+
+// align items
+.align-items-center {
+    align-items: center;
+}
+
+//complex layout class
+.flex-center {
+    @extend .justify-centent-center;
+    @extend .align-items-center;
+}
