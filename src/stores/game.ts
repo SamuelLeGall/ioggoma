@@ -1,9 +1,6 @@
 import { defineStore } from "pinia";
 import { Ref, ref } from "vue";
-interface Option {
-  key: string;
-  value: string;
-}
+import { Option } from "@models/game/basic";
 export const useGameStore = defineStore("game", () => {
   const currentLocalization: Ref<Option> = ref({
     key: "fr_FR",
