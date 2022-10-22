@@ -14,6 +14,7 @@ export default defineConfig({
       "@config": path.resolve(__dirname, "./src/config"),
       "@directives": path.resolve(__dirname, "./src/directives"),
       "@localizations": path.resolve(__dirname, "./src/localizations"),
+      "@models": path.resolve(__dirname, "./src/models"),
       "@router": path.resolve(__dirname, "./src/router"),
       "@stores": path.resolve(__dirname, "./src/stores"),
       "@styles": path.resolve(__dirname, "./src/styles"),

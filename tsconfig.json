@@ -28,6 +28,9 @@
       "@localizations/*": [
         "src/localizations/*"
       ],
+      "@models/*": [
+        "src/models/*"
+      ],
       "@router/*": [
         "src/router/*"
       ],

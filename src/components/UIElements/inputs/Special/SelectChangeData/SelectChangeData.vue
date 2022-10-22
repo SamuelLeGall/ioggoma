@@ -15,10 +15,7 @@ import { defineComponent, PropType } from "vue";
 import { useI18n } from "vue-i18n";
 import SelectComponent from "@components/UIElements/inputs/Select/SelectComponent.vue";
 import { useGameStore } from "@stores/game";
-interface Option {
-  key: string;
-  value: string;
-}
+import { Option } from "@models/game/basic";
 
 export default defineComponent({
   name: "SelectChangeData",

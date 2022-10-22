@@ -10,10 +10,10 @@ import { release } from "os";
 import { join } from "path";
 import * as fs from "fs";
 
-const dir = app.getPath("documents") + "/My Games/Ioggomar";
+const dir = app.getPath("documents") + "\\My Games\\Ioggomar";
 const options = {
   title: "Save file",
-  defaultPath: `${dir}/saves/currentSave.json`,
+  defaultPath: `${dir}\\saves\\currentSave.json`,
   filters: [{ name: "json", extensions: ["json"] }],
 };
 
@@ -21,7 +21,7 @@ async function save(_event: IpcMainEvent, saveData: any): Promise<boolean> {
   try {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
-      fs.mkdirSync(`${dir}/saves`);
+      fs.mkdirSync(`${dir}\\saves`);
     }
     const { canceled, filePath } = await dialog.showSaveDialog(options);
     if (canceled) {
@@ -41,7 +41,7 @@ async function load(): Promise<any> {
   try {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
-      fs.mkdirSync(`${dir}/saves`);
+      fs.mkdirSync(`${dir}\\saves`);
     }
     const { canceled, filePaths } = await dialog.showOpenDialog(options);
     if (canceled) {

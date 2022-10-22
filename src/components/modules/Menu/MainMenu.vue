@@ -1,5 +1,8 @@
 <template>
-  <div class="display-flex flex-direction-column flex-center gap-1em">
+  <div
+    id="main-menu-container"
+    class="display-flex flex-direction-column flex-fill gap-1em flex-center"
+  >
     <h1>{{ t("MainMenuMessage.MainMenu.title") }}</h1>
     <p>Player level {{ playerLvl }}</p>
     <button @click="playerLvlUp(1)">lvl + 1</button>
@@ -14,7 +17,7 @@
       {{ t("MainMenuMessage.MainMenu.loadButton") }}
     </button>
     <select-change-data
-      :options="mapping.game.localization"
+      :options="settingsMapping.game.localization"
       type="localization"
       :sorted="true"
       :multiple="false"
@@ -22,7 +25,7 @@
       @update:model-value="currentLocalization = $event"
     />
     <select-change-data
-      :options="mapping.game.theme"
+      :options="settingsMapping.game.theme"
       type="theme"
       :sorted="true"
       :multiple="false"
@@ -39,7 +42,7 @@ import { storeToRefs } from "pinia";
 import { usePlayerStore } from "@stores/player";
 import { save, load } from "@utils/SaveSystem";
 import { useGameStore } from "@stores/game";
-import mapping from "@config/mapping.json";
+import settingsMapping from "@config/mappings/settingsMapping.json";
 import SelectChangeData from "@components/UIElements/inputs/Special/SelectChangeData/SelectChangeData.vue";
 
 export default defineComponent({
@@ -62,7 +65,7 @@ export default defineComponent({
       playerLvl,
       currentLocalization,
       currentDataTheme,
-      mapping,
+      settingsMapping,
       modelValueTest,
       playerLvlUp,
       save,
@@ -71,3 +74,11 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+#main-menu-container {
+  background-color: aqua;
+}
+#main-menu-container > * {
+  background-color: rebeccapurple;
+}
+</style>

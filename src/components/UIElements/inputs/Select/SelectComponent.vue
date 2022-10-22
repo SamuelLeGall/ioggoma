@@ -26,7 +26,7 @@
     <div
       v-if="showOptions"
       id="select-options-list-container"
-      class="display-flex flex-direction-column padding-10 margin-top-10"
+      class="display-flex flex-direction-column padding-10 margin-top-10 flex-fill"
     >
       <div v-if="filteredOptions.length">
         <div
@@ -54,10 +54,7 @@
 import { defineComponent, PropType, ref, computed, onMounted, Ref } from "vue";
 import clickOutsideEvent from "@directives/clickOutsideEvent";
 import { useI18n } from "vue-i18n";
-interface Option {
-  key: string;
-  value: string;
-}
+import { Option } from "@models/game/basic";
 
 export default defineComponent({
   name: "SelectComponent",

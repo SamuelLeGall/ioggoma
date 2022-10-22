@@ -2,8 +2,6 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const usePlayerStore = defineStore("player", () => {
-  // base stats used when calculating the stat of player with his level.
-  //only updated with some specific items/events
   const playerBaseStats = ref({
     hp: 10,
     mana: 0,
@@ -11,8 +9,8 @@ export const usePlayerStore = defineStore("player", () => {
     mAtk: 1,
     def: 1,
     mDef: 1,
-    agility: 1, // high agility increase dodge rate
-    dexterity: 1, // high dexterity increase crit rate
+    agility: 1,
+    dexterity: 1,
     speed: 1,
     luck: 1,
   });

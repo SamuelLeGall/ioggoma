@@ -2,15 +2,28 @@ import { useGameStore } from "@stores/game";
 import { usePlayerStore } from "@stores/player";
 import { useQuestsStore } from "@stores/quests";
 
-const gameStore = useGameStore();
-const playerStore = usePlayerStore();
-const questsStore = useQuestsStore();
-const { getGameStoreState, setGameStoreState } = gameStore;
-const { getPlayerStoreState, setPlayerStoreState } = playerStore;
-const { getQuestsStoreState, setQuestsStoreState } = questsStore;
+// no pinia store at root level only inside setup fonction.
+function initTheStore() {
+  const gameStore = useGameStore();
+  const playerStore = usePlayerStore();
+  const questsStore = useQuestsStore();
+  const { getGameStoreState, setGameStoreState } = gameStore;
+  const { getPlayerStoreState, setPlayerStoreState } = playerStore;
+  const { getQuestsStoreState, setQuestsStoreState } = questsStore;
+  return {
+    getGameStoreState,
+    setGameStoreState,
+    getPlayerStoreState,
+    setPlayerStoreState,
+    getQuestsStoreState,
+    setQuestsStoreState,
+  };
+}
 
 // METHODS
 export const save = async () => {
+  const { getGameStoreState, getPlayerStoreState, getQuestsStoreState } =
+    initTheStore();
   const saveData = {
     GameStore: getGameStoreState(),
     PlayerStore: getPlayerStoreState(),
@@ -22,6 +35,8 @@ export const save = async () => {
   }
 };
 export const load = async () => {
+  const { setGameStoreState, setPlayerStoreState, setQuestsStoreState } =
+    initTheStore();
   const gameData = await window.electronAPI.loadGame();
   if (gameData) {
     setGameStoreState(gameData.GameStore);
