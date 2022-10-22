@@ -9,6 +9,7 @@
     "build": "vue-tsc --noEmit && vite build && electron-builder",
     "lint": "eslint --ext .js,.vue,.ts src",
     "test": "vitest",
+    "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "husky": {

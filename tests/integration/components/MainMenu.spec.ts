@@ -4,15 +4,16 @@ import { createI18n } from "vue-i18n";
 //alias are working but not detected by the typescript, can be ignored
 import router from "@router/index";
 import MainMenu from "@components/modules/Menu/MainMenu.vue";
+import * as messagesFr from "@localizations/fr_FR/UI/Menus/MainMenuMessage.json";
 
-test("mount component", async () => {
+test("mount MainMenu", async () => {
   expect(MainMenu).toBeTruthy();
   const i18n = createI18n({
     legacy: false,
     locale: "fr_FR", // set locale
     fallbackLocale: "en_US", // set fallback locale
     messages: {
-      fr_FR: { MainMenuMessage: { MainMenu: { title: "Menu Principal" } } },
+      fr_FR: { MainMenuMessage: { MainMenu: messagesFr.MainMenu } },
     }, // set locale messages
   });
   const wrapper = mount(MainMenu, {
@@ -22,10 +23,10 @@ test("mount component", async () => {
     },
   });
 
-  expect(wrapper.get("h1").text()).toBe("Menu Principal");
-  expect(wrapper.get("span").text()).toBe("Player level 1");
+  expect(wrapper.get("h1").text()).toBe("Menu principal");
+  expect(wrapper.get("p").text()).toBe("Player level 1");
 
   await wrapper.get("button").trigger("click");
 
-  expect(wrapper.get("span").text()).toBe("Player level 2");
+  expect(wrapper.get("p").text()).toBe("Player level 2");
 });
