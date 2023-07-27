@@ -11,37 +11,34 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": [
-        "src/assets/*"
+        "ioggomarApp/src/assets/*"
       ],
       "@composables/*": [
-        "src/composables/*"
+        "ioggomarApp/src/vuejs/app/composables/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "ioggomarApp/src/vuejs/app/components/*"
       ],
       "@config/*": [
-        "src/config/*"
-      ],
-      "@directives/*": [
-        "src/directives/*"
+        "ioggomarApp/src/config/*"
       ],
       "@localizations/*": [
-        "src/localizations/*"
+        "ioggomarApp/src/localizations/*"
       ],
       "@models/*": [
-        "src/models/*"
+        "ioggomarApp/src/models/*"
       ],
       "@router/*": [
-        "src/router/*"
+        "ioggomarApp/src/vuejs/app/router/*"
       ],
       "@stores/*": [
-        "src/stores/*"
+        "ioggomarApp/src/vuejs/app/stores/*"
       ],
       "@styles/*": [
-        "src/styles/*"
+        "ioggomarApp/src/styles/*"
       ],
       "@utils/*": [
-        "src/utils/*"
+        "ioggomarApp/src/utils/*"
       ],
     },
     "strict": true,
@@ -50,8 +47,8 @@
     "types": ["vitest/globals"]
   },
   "include": [
-    "src"
-  ],
+    "ioggomarApp"
+, "ioggomarApp/src/vuejs/vitest.config.ts"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
