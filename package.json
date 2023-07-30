@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "prepare":"husky install",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
     "lint": "eslint --ext .js,.vue,.ts src",
     "test": "vitest",
@@ -31,7 +32,7 @@
     "eslint": "~8.23.0",
     "eslint-config-prettier": "~8.5.0",
     "eslint-plugin-vue": "~9.4.0",
-    "husky": "~8.0.1",
+    "husky": "~8.0.3",
     "jsdom": "^20.0.0",
     "lodash": "~4.17.21",
     "pinia": "~2.0.21",
