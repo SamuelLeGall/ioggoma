@@ -1,7 +1,6 @@
 import {
   ElementalTypeConfig,
   ElementalTypesGlobalConfig,
-  ElementalTypesInteractions,
   Elements,
 } from "@models/fight/ElementalTypesModels";
 import { waterElementalTypeConfig } from "./waterElementalType";
