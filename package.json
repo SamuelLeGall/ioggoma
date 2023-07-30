@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "prepare":"husky install",
+    "prepare": "husky install",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
     "lint": "eslint --ext .js,.vue,.ts src",
     "test": "vitest",
