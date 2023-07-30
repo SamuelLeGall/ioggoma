@@ -13,6 +13,7 @@ export enum drawingResult {
   SUCCESS = "success",
   CRITICAL_SUCCESS = "criticalSuccess",
 }
+
 export interface Option {
   key: string;
   value: string;

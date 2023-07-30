@@ -4,7 +4,7 @@ interface FighterStats {
   hp: number;
   mana: number;
   atk: number;
-  mAtk: number;
+  magicAtk: number;
   def: number;
   mDef: number;
   agility: number; // high agility increase dodge rate
