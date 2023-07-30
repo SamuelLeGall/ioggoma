@@ -22,7 +22,7 @@ function getElementalTypeConfig(
     return defaultElementalTypeConfig;
   }
   const atkTypeConfig: ElementalTypesInteractions =
-    elementalTypesGlobalConfig[atkElement]!;
+    elementalTypesGlobalConfig[atkElement];
 
   // if the defender element is not in the attacker config --> we return a default config that will not give any bonus/malus
   return atkTypeConfig.effectOn[defElement] || defaultElementalTypeConfig;
