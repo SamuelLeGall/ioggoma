@@ -13,12 +13,6 @@
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
-  },
   "devDependencies": {
     "@pinia/testing": "~0.0.14",
     "@types/jest": "~29.0.0",
