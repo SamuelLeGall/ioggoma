@@ -1,6 +1,6 @@
-import { GameService } from "src/domain/services/GameService";
-import { PlayerService } from "src/domain/services/PlayerService";
-import { QuestService } from "src/domain/services/quests/QuestsService";
+import { GameService } from "@src/domain/services/GameService";
+import { PlayerService } from "@src/domain/services/PlayerService";
+import { QuestService } from "@src/domain/services/quests/QuestsService";
 
 // no pinia store at root level only inside setup fonction.
 function initServices() {

@@ -1,14 +1,13 @@
 import {
   elementalTypesGlobalConfig,
   defaultElementalTypeConfig,
-} from "@config/globalConstants/fighting/Elements/elementTypesConfig";
+} from "@src/config/globalConstants/fighting/Elements/elementTypesConfig";
 import {
   ElementalTypeConfig,
   ElementalTypesInteractions,
-} from "@models/fight/ElementalTypesModels";
-import { Combatant } from "src/domain/models/entitiesStats/CombatantModels";
-import { CombatantInstanceRepository } from "src/domain/repositories/CombatantInstanceRepository";
+} from "@src/domain/models/fight/ElementalTypesModels";
 import { CombatEntityService } from "./entities/CombatEntityService";
+
 /** FOR SOME GOOD MATHEMATICAL FONCTION FOR GRAPH (experience/damagedealt etc) - https://easings.net/ */
 class CombatSystemService {
   private frindlyCombatants: CombatEntityService[];

@@ -1,6 +1,7 @@
-import { GameRepository } from "../repositories/GameRepository";
 import { OptionConfig } from "../models/BasicAndTempModels";
 import { MainSettings } from "../models/game/SettingsModels";
+import { GameRepository } from "../repositories/GameRepository";
+
 export class GameService {
   private repository: GameRepository;
 

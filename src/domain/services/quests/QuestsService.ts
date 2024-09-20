@@ -1,6 +1,6 @@
-import { Result } from "src/domain/models/BasicAndTempModels";
-import { QuestState } from "src/domain/models/quests/QuestsModels";
-import { QuestRepository } from "src/domain/repositories/QuestsRepository";
+import { Result } from "@src/domain/models/BasicAndTempModels";
+import { QuestState } from "@src/domain/models/quests/QuestsModels";
+import { QuestRepository } from "@src/domain/repositories/QuestsRepository";
 
 export class QuestService {
   private repository: QuestRepository;
@@ -10,7 +10,7 @@ export class QuestService {
   }
 
   /** Business Logic - It represent use cases or actions that the player can perform **/
-  acceptQuest(questId: string): Result<true> {
+  public acceptQuest(questId: string): Result<true> {
     const [isQuestAdded, error] = this.repository.addOnGoingQuestById(questId);
 
     if (!isQuestAdded) {
@@ -19,7 +19,7 @@ export class QuestService {
     return [true, null];
   }
 
-  cancelQuest(questId: string): Result<true> {
+  public cancelQuest(questId: string): Result<true> {
     const [isQuestRemovedFromOnGoing, errorRemoveQuest] =
       this.repository.removeOnGoingQuestById(questId);
 
@@ -33,7 +33,7 @@ export class QuestService {
     return [true, null];
   }
 
-  completeQuest(questId: string): Result<true> {
+  public completeQuest(questId: string): Result<true> {
     const [isQuestRemovedFromOnGoing, errorRemoveQuest] =
       this.repository.removeOnGoingQuestById(questId);
 
@@ -51,7 +51,7 @@ export class QuestService {
     return [true, null];
   }
 
-  failQuest(questId: string): Result<true> {
+  public failQuest(questId: string): Result<true> {
     const [isQuestRemovedFromOnGoing, errorRemoveQuest] =
       this.repository.removeOnGoingQuestById(questId);
 
@@ -63,11 +63,11 @@ export class QuestService {
     return [true, null];
   }
 
-  initializeQuestsState(data: QuestState) {
+  public initializeQuestsState(data: QuestState) {
     return this.repository.setQuestsStoreState(data);
   }
 
-  exportQuestsState(): QuestState {
+  public exportQuestsState(): QuestState {
     return this.repository.getQuestsStoreState();
   }
 }

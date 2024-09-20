@@ -1,10 +1,10 @@
-import { drawingResult } from "@models/BasicAndTempModels";
-import { ElementalTypes } from "@models/fight/ElementalTypesModels";
+import { drawingResult } from "@src/domain/models/BasicAndTempModels";
+import { ElementalTypes } from "@src/domain/models/fight/ElementalTypesModels";
+import { CombatantInstanceRepository } from "@src/domain/repositories/CombatantInstanceRepository";
 import {
   isSuccess,
   convertPercentSuccessIntoSuccessMinNumber,
-} from "@utils/DrawsUtils";
-import { CombatantInstanceRepository } from "src/domain/repositories/CombatantInstanceRepository";
+} from "@src/utils/DrawsUtils";
 
 export class CombatEntityService {
   private repository: CombatantInstanceRepository;
