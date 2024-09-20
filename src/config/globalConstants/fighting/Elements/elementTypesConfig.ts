@@ -1,8 +1,8 @@
 import {
   ElementalTypeConfig,
   ElementalTypesGlobalConfig,
-  Elements,
-} from "@models/fight/ElementalTypesModels";
+  ElementalTypes,
+} from "src/domain/models/fight/ElementalTypesModels";
 import { waterElementalTypeConfig } from "./waterElementalType";
 import { woodElementalTypeConfig } from "./woodElementalType";
 import { lightElementalTypeConfig } from "./lightElementalType";
@@ -15,10 +15,10 @@ export const defaultElementalTypeConfig: ElementalTypeConfig = {
 };
 
 export const elementalTypesGlobalConfig: ElementalTypesGlobalConfig = {
-  [Elements.FIRE]: fireElementalTypeConfig,
-  [Elements.WATER]: waterElementalTypeConfig,
-  [Elements.WOOD]: woodElementalTypeConfig,
-  [Elements.LIGHT]: lightElementalTypeConfig,
-  [Elements.DARK]: darkElementalTypeConfig,
-  [Elements.NULL]: nullElementalTypeConfig,
+  [ElementalTypes.FIRE]: fireElementalTypeConfig,
+  [ElementalTypes.WATER]: waterElementalTypeConfig,
+  [ElementalTypes.WOOD]: woodElementalTypeConfig,
+  [ElementalTypes.LIGHT]: lightElementalTypeConfig,
+  [ElementalTypes.DARK]: darkElementalTypeConfig,
+  [ElementalTypes.NULL]: nullElementalTypeConfig,
 };

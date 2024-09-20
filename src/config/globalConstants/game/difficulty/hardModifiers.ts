@@ -1,4 +1,4 @@
-import { DifficultyModifiers } from "@models/game/difficulties/difficultiesModels";
+import { DifficultyModifiers } from "src/domain/models/game/difficulties/DifficultiesModifiersModels";
 
 const hardDifficultyModifiers: DifficultyModifiers = {
   playerMultipliers: {

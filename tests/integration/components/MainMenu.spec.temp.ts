@@ -1,7 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
 import { createI18n } from "vue-i18n";
-//alias are working but not detected by the typescript, can be ignored
 import router from "@router/index";
 import MainMenu from "@components/modules/Menu/MainMenu.vue";
 import * as messagesFr from "@localizations/fr_FR/UI/Menus/MainMenuMessage.json";

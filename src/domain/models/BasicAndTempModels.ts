@@ -1,3 +1,4 @@
+export type Result<T> = [T, null] | [null, Error];
 export interface ExtendingDrawingLimits {
   criticalFailureLimit?: number;
   marginalFailureLimit?: number;
@@ -13,7 +14,7 @@ export enum drawingResult {
   SUCCESS = "success",
   CRITICAL_SUCCESS = "criticalSuccess",
 }
-export interface Option {
+export interface OptionConfig {
   key: string;
   value: string;
 }

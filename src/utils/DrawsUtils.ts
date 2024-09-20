@@ -1,5 +1,8 @@
-import { drawingResult, ExtendingDrawingLimits } from "@models/game/basic";
-import { randomIntNumberInclusive } from "@utils/GeneralUtils";
+import {
+  drawingResult,
+  ExtendingDrawingLimits,
+} from "src/domain/models/BasicAndTempModels";
+import { isEmpty, randomIntNumberInclusive } from "@utils/GeneralUtils";
 
 /* Parameters : 
   - percentSucessvalue : the number base 10 of the success rate. If under 0 -> we return successMinNumber at 100, If over 100 -> we return successMinNumber at 0
@@ -30,48 +33,56 @@ export const isSuccess = (
 ): drawingResult => {
   const minimum = 0;
   const maximum = 100;
-  if (!useExtendingDrawingResult) {
+  if (isEmpty(successMinNumber)) {
+    console.error(
+      "[isSuccess] Error : invalid successMinNumber ",
+      successMinNumber
+    );
+    return drawingResult.SUCCESS;
+  }
+
+  if (
+    !useExtendingDrawingResult ||
+    !extendingDrawingLimits ||
+    isEmpty(extendingDrawingLimits)
+  ) {
     return randomIntNumberInclusive(minimum, maximum) >= successMinNumber
       ? drawingResult.SUCCESS
       : drawingResult.FAILURE;
-  } else if (useExtendingDrawingResult && extendingDrawingLimits) {
-    // get the randomDraw
-    const drawResult = randomIntNumberInclusive(minimum, maximum);
+  }
+  // get the randomDraw
+  const drawResult = randomIntNumberInclusive(minimum, maximum);
 
-    // return the correct outcomes
-    if (
-      extendingDrawingLimits.criticalFailureLimit &&
-      drawResult <= extendingDrawingLimits.criticalFailureLimit &&
-      extendingDrawingLimits.criticalFailureLimit !== 0
-    ) {
-      return drawingResult.CRITICAL_FAILURE;
-    } else if (
-      (extendingDrawingLimits.marginalFailureLimit &&
-        drawResult < extendingDrawingLimits.marginalFailureLimit) ||
-      (drawResult < successMinNumber &&
-        extendingDrawingLimits.marginalFailureLimit === 0)
-    ) {
-      return drawingResult.FAILURE;
-    } else if (drawResult < successMinNumber) {
-      return drawingResult.MARGINAL_FAILURE;
-    } else if (
-      extendingDrawingLimits.marginalSuccessLimit &&
-      drawResult < extendingDrawingLimits.marginalSuccessLimit &&
-      extendingDrawingLimits.marginalSuccessLimit !== 0
-    ) {
-      return drawingResult.MARGINAL_SUCCESS;
-    } else if (
-      (extendingDrawingLimits.criticalSuccessLimit &&
-        drawResult < extendingDrawingLimits.criticalSuccessLimit) ||
-      (drawResult >= successMinNumber &&
-        extendingDrawingLimits.criticalSuccessLimit === 0)
-    ) {
-      return drawingResult.SUCCESS;
-    } else {
-      return drawingResult.CRITICAL_SUCCESS;
-    }
-  } else {
-    console.error("[isSuccess] Error : extendingDrawingLimits undefined");
+  // return the correct outcomes
+  if (
+    extendingDrawingLimits.criticalFailureLimit &&
+    drawResult <= extendingDrawingLimits.criticalFailureLimit &&
+    extendingDrawingLimits.criticalFailureLimit !== 0
+  ) {
+    return drawingResult.CRITICAL_FAILURE;
+  } else if (
+    (extendingDrawingLimits.marginalFailureLimit &&
+      drawResult < extendingDrawingLimits.marginalFailureLimit) ||
+    (drawResult < successMinNumber &&
+      extendingDrawingLimits.marginalFailureLimit === 0)
+  ) {
+    return drawingResult.FAILURE;
+  } else if (drawResult < successMinNumber) {
+    return drawingResult.MARGINAL_FAILURE;
+  } else if (
+    extendingDrawingLimits.marginalSuccessLimit &&
+    drawResult < extendingDrawingLimits.marginalSuccessLimit &&
+    extendingDrawingLimits.marginalSuccessLimit !== 0
+  ) {
+    return drawingResult.MARGINAL_SUCCESS;
+  } else if (
+    (extendingDrawingLimits.criticalSuccessLimit &&
+      drawResult < extendingDrawingLimits.criticalSuccessLimit) ||
+    (drawResult >= successMinNumber &&
+      extendingDrawingLimits.criticalSuccessLimit === 0)
+  ) {
     return drawingResult.SUCCESS;
+  } else {
+    return drawingResult.CRITICAL_SUCCESS;
   }
 };

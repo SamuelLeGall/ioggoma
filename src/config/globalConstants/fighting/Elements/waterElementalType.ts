@@ -1,16 +1,16 @@
 import {
   ElementalTypesInteractions,
-  Elements,
-} from "@models/fight/ElementalTypesModels";
+  ElementalTypes,
+} from "src/domain/models/fight/ElementalTypesModels";
 import { defaultElementalTypeConfig } from "./elementTypesConfig";
 
 export const waterElementalTypeConfig: ElementalTypesInteractions = {
   effectOn: {
     DEFAULT: defaultElementalTypeConfig,
-    [Elements.FIRE]: {
+    [ElementalTypes.FIRE]: {
       damageMultiplier: 0.5,
     },
-    [Elements.WATER]: {
+    [ElementalTypes.WATER]: {
       damageMultiplier: 0.25,
       criticalConfig: {
         failure: {
@@ -18,7 +18,7 @@ export const waterElementalTypeConfig: ElementalTypesInteractions = {
         },
       },
     },
-    [Elements.WOOD]: {
+    [ElementalTypes.WOOD]: {
       damageMultiplier: 1.75,
       criticalConfig: {
         success: {

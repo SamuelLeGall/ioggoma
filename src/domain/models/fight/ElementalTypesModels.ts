@@ -1,4 +1,4 @@
-export enum Elements {
+export enum ElementalTypes {
   FIRE = "fire",
   WATER = "water",
   WOOD = "wood",
@@ -24,21 +24,21 @@ export interface ElementalTypesInteractions {
   effectOn: {
     // if the defense element is not defined in the list of the mail elemet, we will take the default key
     DEFAULT: ElementalTypeConfig;
-    [Elements.FIRE]?: ElementalTypeConfig;
-    [Elements.WATER]?: ElementalTypeConfig;
-    [Elements.WOOD]?: ElementalTypeConfig;
-    [Elements.LIGHT]?: ElementalTypeConfig;
-    [Elements.DARK]?: ElementalTypeConfig;
-    [Elements.NULL]?: ElementalTypeConfig;
+    [ElementalTypes.FIRE]?: ElementalTypeConfig;
+    [ElementalTypes.WATER]?: ElementalTypeConfig;
+    [ElementalTypes.WOOD]?: ElementalTypeConfig;
+    [ElementalTypes.LIGHT]?: ElementalTypeConfig;
+    [ElementalTypes.DARK]?: ElementalTypeConfig;
+    [ElementalTypes.NULL]?: ElementalTypeConfig;
   };
 }
 export interface ElementalTypesGlobalConfig {
   // if the atk element is not defined in the config, we will take the default key from elementTypesConfig
   // or the null ElementalTypesInteractions depending on the needs
-  [Elements.FIRE]: ElementalTypesInteractions;
-  [Elements.WATER]: ElementalTypesInteractions;
-  [Elements.WOOD]: ElementalTypesInteractions;
-  [Elements.LIGHT]: ElementalTypesInteractions;
-  [Elements.DARK]: ElementalTypesInteractions;
-  [Elements.NULL]: ElementalTypesInteractions;
+  [ElementalTypes.FIRE]: ElementalTypesInteractions;
+  [ElementalTypes.WATER]: ElementalTypesInteractions;
+  [ElementalTypes.WOOD]: ElementalTypesInteractions;
+  [ElementalTypes.LIGHT]: ElementalTypesInteractions;
+  [ElementalTypes.DARK]: ElementalTypesInteractions;
+  [ElementalTypes.NULL]: ElementalTypesInteractions;
 }

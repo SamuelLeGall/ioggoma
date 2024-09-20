@@ -1,33 +1,26 @@
-import { useGameStore } from "@stores/game";
-import { usePlayerStore } from "@stores/player";
-import { useQuestsStore } from "@stores/quests";
+import { GameService } from "src/domain/services/GameService";
+import { PlayerService } from "src/domain/services/PlayerService";
+import { QuestService } from "src/domain/services/quests/QuestsService";
 
 // no pinia store at root level only inside setup fonction.
-function initTheStore() {
-  const gameStore = useGameStore();
-  const playerStore = usePlayerStore();
-  const questsStore = useQuestsStore();
-  const { getGameStoreState, setGameStoreState } = gameStore;
-  const { getPlayerStoreState, setPlayerStoreState } = playerStore;
-  const { getQuestsStoreState, setQuestsStoreState } = questsStore;
+function initServices() {
+  const gameService = new GameService();
+  const questsService = new QuestService();
+  const playerService = new PlayerService();
   return {
-    getGameStoreState,
-    setGameStoreState,
-    getPlayerStoreState,
-    setPlayerStoreState,
-    getQuestsStoreState,
-    setQuestsStoreState,
+    gameService,
+    questsService,
+    playerService,
   };
 }
 
 // METHODS
 export const save = async () => {
-  const { getGameStoreState, getPlayerStoreState, getQuestsStoreState } =
-    initTheStore();
+  const { gameService, questsService, playerService } = initServices();
   const saveData = {
-    GameStore: getGameStoreState(),
-    PlayerStore: getPlayerStoreState(),
-    QuestsStore: getQuestsStoreState(),
+    GameStore: gameService.exportGameState(),
+    PlayerStore: playerService.exportQuestsState(),
+    QuestsStore: questsService.exportQuestsState(),
   };
   const isSaved = await window.electronAPI.saveGame(JSON.stringify(saveData));
   if (isSaved) {
@@ -35,13 +28,12 @@ export const save = async () => {
   }
 };
 export const load = async () => {
-  const { setGameStoreState, setPlayerStoreState, setQuestsStoreState } =
-    initTheStore();
+  const { gameService, questsService, playerService } = initServices();
   const gameData = await window.electronAPI.loadGame();
   if (gameData) {
-    setGameStoreState(gameData.GameStore);
-    setPlayerStoreState(gameData.PlayerStore);
-    setQuestsStoreState(gameData.QuestsStore);
+    gameService.initializeGameState(gameData.GameStore);
+    playerService.initializePlayerState(gameData.PlayerStore);
+    questsService.initializeQuestsState(gameData.QuestsStore);
     console.log("loaded");
   }
 };

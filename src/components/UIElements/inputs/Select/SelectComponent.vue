@@ -54,7 +54,7 @@
 import { defineComponent, PropType, ref, computed, onMounted, Ref } from "vue";
 import clickOutsideEvent from "@directives/clickOutsideEvent";
 import { useI18n } from "vue-i18n";
-import { Option } from "@models/game/basic";
+import { OptionConfig } from "@models/game/basic";
 
 export default defineComponent({
   name: "SelectComponent",
@@ -64,11 +64,11 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     modelValue: {
-      type: Object as PropType<Array<Option> | Option>,
+      type: Object as PropType<Array<OptionConfig> | OptionConfig>,
       required: true,
     },
     options: {
-      type: Object as PropType<Array<Option>>,
+      type: Object as PropType<Array<OptionConfig>>,
       required: true,
     },
     sorted: {
@@ -87,12 +87,12 @@ export default defineComponent({
     // state
     const showOptions = ref(false);
     const inputText = ref("");
-    const selectedOptions: Ref<Array<Option>> = ref([]);
+    const selectedOptions: Ref<Array<OptionConfig>> = ref([]);
 
     // COMPUTED
     const filteredOptions = computed(() => {
       const res = props.options.reduce(
-        (previousValue: Array<Option>, currentValue: Option) => {
+        (previousValue: Array<OptionConfig>, currentValue: OptionConfig) => {
           if (
             currentValue.value
               .toLowerCase()
@@ -105,13 +105,15 @@ export default defineComponent({
         []
       );
       if (props.sorted) {
-        res.sort((a: Option, b: Option) => a.value.localeCompare(b.value));
+        res.sort((a: OptionConfig, b: OptionConfig) =>
+          a.value.localeCompare(b.value)
+        );
       }
       return res;
     });
 
     // METHODS
-    const emitModel = (newValue: Option | Array<Option>) => {
+    const emitModel = (newValue: OptionConfig | Array<OptionConfig>) => {
       emit("update:model-value", newValue);
     };
     const updateShowOptions = (newValue: boolean) => {
@@ -129,15 +131,15 @@ export default defineComponent({
       }
     };
 
-    const updateSelectedOption = (newSelectedOption: Option) => {
+    const updateSelectedOption = (newSelectedOption: OptionConfig) => {
       if (props.multiple) {
         inputText.value = "";
         if (checkSelectedvalueByKey(newSelectedOption.key) === -1) {
-          // not part of selected values at the moment so we add this Option to the list
+          // not part of selected values at the moment so we add this OptionConfig to the list
           selectedOptions.value.push(newSelectedOption);
           emitModel(selectedOptions.value);
         } else {
-          // is part of selected values at the moment so we remove this Option to the list*
+          // is part of selected values at the moment so we remove this OptionConfig to the list*
           removeSelectedvalueByKey(newSelectedOption.key);
         }
       } else if (!props.multiple) {
@@ -151,9 +153,9 @@ export default defineComponent({
     // HOOKS
     onMounted(() => {
       // incoming model value is type :
-      //    - Array<Option> if multiple=true
-      //    - Option if multiple=false
-      // Internally we work with an selectedOptions of type Array<Option> in both cases
+      //    - Array<OptionConfig> if multiple=true
+      //    - OptionConfig if multiple=false
+      // Internally we work with an selectedOptions of type Array<OptionConfig> in both cases
       if (props.multiple) {
         inputText.value = "";
         selectedOptions.value = props.modelValue;
@@ -213,3 +215,4 @@ export default defineComponent({
   background-color: bisque !important;
 }
 </style>
+src/domain/models/game/basic

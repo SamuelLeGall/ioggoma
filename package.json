@@ -8,7 +8,7 @@
     "dev": "vite",
     "prepare": "husky install",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
-    "lint": "eslint --ext .js,.vue,.ts src --max-warnings=0",
+    "lint": "eslint --ext .js,.vue,.ts src --max-warnings=0 && vue-tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"

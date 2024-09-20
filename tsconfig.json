@@ -29,7 +29,7 @@
         "src/localizations/*"
       ],
       "@models/*": [
-        "src/models/*"
+        "src/domain/models/*"
       ],
       "@router/*": [
         "src/router/*"

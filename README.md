@@ -73,7 +73,7 @@ You then need to go to src/styles/variables/data-themes.scss and add :
 ### Using alias for an added folder
 
 You have to edit 3 files, all situated at the root of the project. One is used for the unit tests, one for vite/vue and the last only for typescript.
-vite.config.ts, tsconfig.json
+vitest.config.ts, vite.config.ts, tsconfig.json
 
 ### Link trello
 
