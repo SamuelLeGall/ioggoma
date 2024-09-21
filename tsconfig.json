@@ -10,6 +10,9 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
+      "@src/*": [
+        "src/*"
+      ],
       "@assets/*": [
         "src/assets/*"
       ],
@@ -29,7 +32,7 @@
         "src/localizations/*"
       ],
       "@models/*": [
-        "src/models/*"
+        "src/domain/models/*"
       ],
       "@router/*": [
         "src/router/*"
@@ -50,7 +53,7 @@
     "types": ["vitest/globals"]
   },
   "include": [
-    "src"
+    "src","tests"
   ],
   "references": [
     {

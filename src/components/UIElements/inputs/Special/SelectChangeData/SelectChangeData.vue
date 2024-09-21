@@ -15,7 +15,7 @@ import { defineComponent, PropType } from "vue";
 import { useI18n } from "vue-i18n";
 import SelectComponent from "@components/UIElements/inputs/Select/SelectComponent.vue";
 import { useGameStore } from "@stores/game";
-import { Option } from "@models/game/basic";
+import { OptionConfig } from "@models/game/basic";
 
 export default defineComponent({
   name: "SelectChangeData",
@@ -23,7 +23,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     modelValue: {
-      type: Object as PropType<Array<Option> | Option>,
+      type: Object as PropType<Array<OptionConfig> | OptionConfig>,
       required: true,
     },
     type: {
@@ -32,7 +32,7 @@ export default defineComponent({
       default: "",
     },
     options: {
-      type: Object as PropType<Array<Option>>,
+      type: Object as PropType<Array<OptionConfig>>,
       required: true,
     },
     sorted: {
@@ -55,7 +55,7 @@ export default defineComponent({
     const { t, locale } = useI18n({ useScope: "global" });
 
     // METHODS
-    const changeData = (option: Option) => {
+    const changeData = (option: OptionConfig) => {
       switch (props.type) {
         case "localization":
           changeLocalization(option);
@@ -70,11 +70,11 @@ export default defineComponent({
       emit("update:model-value", option);
     };
 
-    const changeLocalization = async (newLocalization: Option) => {
+    const changeLocalization = async (newLocalization: OptionConfig) => {
       setCurrentLocalization(newLocalization);
       locale.value = newLocalization.key;
     };
-    const changeTheme = async (newTheme: Option) => {
+    const changeTheme = async (newTheme: OptionConfig) => {
       setCurrentDataTheme(newTheme);
       document.documentElement.setAttribute("data-theme", newTheme.key);
     };
@@ -87,3 +87,4 @@ export default defineComponent({
   },
 });
 </script>
+src/domain/models/game/basicsrc/domain/database-stores/game
