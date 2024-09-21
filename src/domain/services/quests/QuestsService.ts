@@ -12,10 +12,10 @@ export class QuestService {
   /** Business Logic - It represent use cases or actions that the player can perform **/
   public acceptQuest(questId: string): Result<true> {
     const [isQuestAdded, error] = this.repository.addOnGoingQuestById(questId);
-
     if (!isQuestAdded) {
       return [null, error];
     }
+
     return [true, null];
   }
 

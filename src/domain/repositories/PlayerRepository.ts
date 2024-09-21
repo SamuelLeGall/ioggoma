@@ -20,7 +20,7 @@ export class PlayerRepository {
     const currentCombatant = this.combatantsRepository
       .getAllCombatants()
       .find((combatant) => {
-        combatant.type === "PLAYER";
+        return combatant.type === "PLAYER";
       });
 
     if (!currentCombatant) {

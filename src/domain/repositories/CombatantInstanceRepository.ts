@@ -21,7 +21,7 @@ export class CombatantInstanceRepository {
   /** Getters **/
   getCombatantById(combatantId: string): Result<Combatant> {
     const currentCombatant = this.store.combatants.find((combatant) => {
-      combatant.id === combatantId;
+      return combatant.id === combatantId;
     });
 
     if (!currentCombatant) {

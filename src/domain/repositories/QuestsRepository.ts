@@ -1,5 +1,5 @@
 import { useQuestsStore } from "../database-stores/quests";
-import { Result } from "../models/BasicAndTempModels";
+import { AppError, AppErrorCodes, Result } from "../models/BasicAndTempModels";
 import {
   OnGoingQuest,
   OnGoingQuests,
@@ -31,10 +31,16 @@ export class QuestRepository {
   getQuestById(questId: string): Result<QuestItem> {
     const listQuests = this.getAllQuests();
     const selectedQuest = listQuests.find((quest: QuestItem) => {
-      quest.id === questId;
+      return quest.id === questId;
     });
     if (!selectedQuest) {
-      return [null, new Error("Quest not found")];
+      return [
+        null,
+        new AppError(
+          `No quest found for id ${questId}`,
+          AppErrorCodes.QUEST_NOT_FOUND
+        ),
+      ];
     }
 
     return [selectedQuest, null];
@@ -43,11 +49,17 @@ export class QuestRepository {
   getOnGoingQuestById(questId: string): Result<OnGoingQuest> {
     const listQuests = this.getOnGoingQuests();
     const selectedQuest = listQuests.find((quest: OnGoingQuest) => {
-      quest.id === questId;
+      return quest.id === questId;
     });
 
     if (!selectedQuest) {
-      return [null, new Error("OnGoingQuest not found")];
+      return [
+        null,
+        new AppError(
+          `No ongoing quest found for id ${questId}`,
+          AppErrorCodes.QUEST_NOT_FOUND_FOR_THIS_CONTEXT
+        ),
+      ];
     }
 
     return [selectedQuest, null];
@@ -56,11 +68,17 @@ export class QuestRepository {
   getOnGoingQuestIndexById(questId: string): Result<number> {
     const listQuests = this.getOnGoingQuests();
     const selectedQuestIndex = listQuests.findIndex((quest: OnGoingQuest) => {
-      quest.id === questId;
+      return quest.id === questId;
     });
 
     if (selectedQuestIndex === -1) {
-      return [null, new Error("OnGoingQuest not found")];
+      return [
+        null,
+        new AppError(
+          `No ongoing quest found for id ${questId}`,
+          AppErrorCodes.QUEST_NOT_FOUND_FOR_THIS_CONTEXT
+        ),
+      ];
     }
 
     return [selectedQuestIndex, null];
@@ -71,7 +89,13 @@ export class QuestRepository {
     const [selectedQuestIndex, error] = this.getOnGoingQuestIndexById(questId);
 
     if (error) {
-      return [null, new Error("Quest not found")];
+      return [
+        null,
+        new AppError(
+          `No ongoing quest found for id ${questId}`,
+          AppErrorCodes.QUEST_NOT_FOUND_FOR_THIS_CONTEXT
+        ),
+      ];
     }
 
     this.store.onGoingQuests.splice(selectedQuestIndex, 1);
@@ -79,21 +103,45 @@ export class QuestRepository {
   }
 
   addOnGoingQuestById(questId: string): Result<true> {
+    // check if the quest exist
     const [_, errorAllQuest] = this.getQuestById(questId);
-    const [onGoingQuest, errorOngoingQuest] = this.getOnGoingQuestById(questId);
-
-    if (errorAllQuest || errorOngoingQuest) {
-      return [null, new Error("Quest not found or already added")];
+    if (errorAllQuest) {
+      return [null, errorAllQuest];
     }
 
-    this.store.onGoingQuests.push(onGoingQuest);
-    return [true, null];
+    // check if quest is that the quest is not already ongoing
+    const [onGoingQuest, errorOngoingQuest] = this.getOnGoingQuestById(questId);
+    if (onGoingQuest) {
+      return [
+        null,
+        new AppError(
+          `Quest with id ${questId} already ongoing`,
+          AppErrorCodes.ACTION_NOT_ALLOWED_DATA_CONSISTENCY
+        ),
+      ];
+    }
+
+    // we expect to not found the ongoing quest
+    if (
+      errorOngoingQuest?.code === AppErrorCodes.QUEST_NOT_FOUND_FOR_THIS_CONTEXT
+    ) {
+      return [true, null];
+    }
+
+    // unexpected error
+    return [null, errorOngoingQuest];
   }
 
   addCompletedQuestById(questId: string): Result<true> {
     // Example logic for adding a completed quest
     if (!this.getCompletedQuestsKeys().includes(questId)) {
-      return [null, new Error("Quest already completed")];
+      return [
+        null,
+        new AppError(
+          `Quest with id ${questId} already completed`,
+          AppErrorCodes.ACTION_NOT_ALLOWED_DATA_CONSISTENCY
+        ),
+      ];
     }
 
     this.store.completedQuests.push(questId);
